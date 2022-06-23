@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/const.dart';
 
 int touchedIndex = -1;
 
@@ -8,8 +9,8 @@ int touchedIndex = -1;
 //////////////////////////////////////////////////////////////////////
 final _barsGradient = const LinearGradient(
   colors: [
-    Color.fromRGBO(253, 216, 53, 1),
-    Color.fromRGBO(255, 167, 38, 1),
+    Color(COLOR_SUBCOLOR),
+    Color(COLOR_PRIMARY),
   ],
   begin: Alignment.bottomCenter,
   end: Alignment.topCenter,

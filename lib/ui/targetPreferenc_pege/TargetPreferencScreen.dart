@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart'
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_app/const.dart';
 
 import '../../model/User.dart';
 import '../../services/FirebaseHelper.dart';
@@ -522,7 +523,7 @@ class TargetPreferenceScreen extends ConsumerWidget {
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.orange[400],
+                  primary: Color(COLOR_PRIMARY),
                   padding: const EdgeInsets.only(top: 7, bottom: 7),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_app/const.dart';
 import 'package:food_app/model/User.dart';
 
 import '../../TestScreen.dart';
@@ -136,7 +137,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ],
                 tabBarProperties: const TabBarProperties(
                   height: 35.0,
-                  indicatorColor: Color.fromRGBO(255, 183, 77, 1),
+                  indicatorColor: Color(COLOR_ACCENT),
                   indicatorWeight: 6.0,
                 ),
 
@@ -154,7 +155,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       floatingActionButton: SpeedDial(
         icon: Icons.add,
-        backgroundColor: Colors.orange[400],
+        backgroundColor: Color(COLOR_PRIMARY),
         children: [
           SpeedDialChild(
             child: const FaIcon(

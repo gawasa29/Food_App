@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/const.dart';
 
 import '../targetPreferenc_pege/TargetPreferencScreen.dart';
 
@@ -111,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 40,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.orange[400],
+                primary: Color(COLOR_PRIMARY),
                 padding: const EdgeInsets.only(top: 7, bottom: 7),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),

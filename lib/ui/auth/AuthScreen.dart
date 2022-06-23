@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/const.dart';
 
 import '../login/LoginScreen.dart';
 import '../signup/SignUpScreen.dart';
@@ -40,12 +41,12 @@ class _AuthScreenState extends State<AuthScreen> {
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.orange[400],
+                    primary: Color(COLOR_PRIMARY),
                     padding: const EdgeInsets.only(top: 7, bottom: 7),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         side: const BorderSide(
-                          color: Color.fromRGBO(255, 167, 38, 1),
+                          color: Color(COLOR_PRIMARY),
                         )),
                   ),
                   child: const Text(

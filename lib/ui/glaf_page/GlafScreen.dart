@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_app/const.dart';
 import 'package:food_app/model/User.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -77,8 +78,8 @@ class _glafState extends ConsumerState<glaf> {
                                 animationType: AnimationType.ease,
                                 sizeUnit: GaugeSizeUnit.factor,
                                 gradient: SweepGradient(colors: <Color>[
-                                  Color.fromRGBO(253, 216, 53, 1),
-                                  Color.fromRGBO(255, 167, 38, 1),
+                                  Color(COLOR_SUBCOLOR),
+                                  Color(COLOR_PRIMARY),
                                 ], stops: <double>[
                                   0.25,
                                   0.75
