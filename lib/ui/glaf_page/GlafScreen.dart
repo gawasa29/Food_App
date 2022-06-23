@@ -102,7 +102,7 @@ class _glafState extends ConsumerState<glaf> {
                                     TextSpan(
                                         //↓ 円の最大量（人によって変化する部分）と不足分
                                         text:
-                                            '${currentUser.targetCalories}\n不足500Kcal',
+                                            ' / ${currentUser.targetCalories}\n不足500Kcal',
                                         // ('${user.lastName} ブロックしました。'.tr()) ' / 1000\n不足500Kcal',
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
