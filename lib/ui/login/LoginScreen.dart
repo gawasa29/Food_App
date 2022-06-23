@@ -60,7 +60,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 20,
                 child: TextFormField(
                   // テキスト入力のラベルを設定
-                  decoration: const InputDecoration(labelText: "メールアドレス"),
+                  decoration: const InputDecoration(
+                    hintText: "メールアドレス",
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(COLOR_PRIMARY),
+                      ),
+                    ),
+                  ),
                   onChanged: (String value) {
                     setState(() {
                       loginUserEmail = value;
@@ -95,7 +102,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 350,
                 height: 20,
                 child: TextFormField(
-                  decoration: const InputDecoration(labelText: "パスワード（６文字以上）"),
+                  decoration: const InputDecoration(
+                    hintText: "パスワード（６文字以上）",
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(COLOR_PRIMARY),
+                      ),
+                    ),
+                  ),
                   obscureText: true,
                   onChanged: (String value) {
                     setState(() {
@@ -117,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     side: const BorderSide(
-                      color: Color.fromRGBO(255, 167, 38, 1),
+                      color: Color(COLOR_PRIMARY),
                     )),
               ),
               child: const Text(

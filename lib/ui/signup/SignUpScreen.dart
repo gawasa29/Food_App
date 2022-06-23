@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/const.dart';
 
 import '../emailcheck/EmailCheckScreen.dart';
 
@@ -59,7 +60,14 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 width: 350,
                 height: 20,
                 child: TextFormField(
-                  decoration: const InputDecoration(labelText: "メールアドレス"),
+                  decoration: const InputDecoration(
+                    hintText: "メールアドレス",
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(COLOR_PRIMARY),
+                      ),
+                    ),
+                  ),
                   onChanged: (String value) {
                     setState(() {
                       newUserEmail = value;
@@ -94,7 +102,14 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 width: 350,
                 height: 20,
                 child: TextFormField(
-                  decoration: const InputDecoration(labelText: "パスワード（６文字以上）"),
+                  decoration: const InputDecoration(
+                    hintText: "パスワード（６文字以上）",
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(COLOR_PRIMARY),
+                      ),
+                    ),
+                  ),
                   // パスワードが見えないようにする
                   obscureText: true,
                   onChanged: (String value) {
@@ -112,12 +127,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
             height: 40,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.orange[400],
+                primary: Color(COLOR_PRIMARY),
                 padding: const EdgeInsets.only(top: 7, bottom: 7),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     side: const BorderSide(
-                      color: Color.fromRGBO(255, 167, 38, 1),
+                      color: Color(COLOR_PRIMARY),
                     )),
               ),
               child: const Text(
