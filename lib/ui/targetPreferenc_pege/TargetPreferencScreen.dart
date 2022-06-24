@@ -10,16 +10,22 @@ import '../../model/User.dart';
 import '../../services/FirebaseHelper.dart';
 import '../home/HomeScreen.dart';
 
-String proteinselectNumbar = '30';
-String fatSelectNumbar = '10';
-String carbosSelectNumbar = '60';
-Map? pfcGram;
-
-class TargetPreferenceScreen extends ConsumerWidget {
-  FireStoreUtils fireStoreUtils = FireStoreUtils();
+class TargetPreferenceScreen extends ConsumerStatefulWidget {
+  const TargetPreferenceScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  TargetPreferenceScreenState createState() => TargetPreferenceScreenState();
+}
+
+class TargetPreferenceScreenState
+    extends ConsumerState<TargetPreferenceScreen> {
+  FireStoreUtils fireStoreUtils = FireStoreUtils();
+  String proteinselectNumbar = '30';
+  String fatSelectNumbar = '10';
+  String carbosSelectNumbar = '60';
+  Map? pfcGram;
+  @override
+  Widget build(BuildContext context) {
     final currentUser = ref.watch(userModelProvider);
     //値更新用のuserクラス
     final user = ref.watch(userModelProvider.notifier);
@@ -33,193 +39,197 @@ class TargetPreferenceScreen extends ConsumerWidget {
       showCupertinoModalPopup(
           context: context,
           builder: (context) {
-            final Size size = MediaQuery.of(context).size;
-            return Container(
-              height: 400,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextButton(
-                        child: const Text('閉じる'),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                      TextButton(
-                        child: const Text('決定'),
-                        onPressed: () {
-                          pfcGram = caloriesToGrams(
-                              currentUser.targetCalories,
-                              proteinselectNumbar,
-                              fatSelectNumbar,
-                              carbosSelectNumbar);
-
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //showCupertinoModalPopupをstatefulwidgetにして画面を再描画するためにいる
+            return StatefulBuilder(builder: (context, setState) {
+              final Size size = MediaQuery.of(context).size;
+              return Container(
+                height: 400,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          children: [
-                            const Material(
-                              color: Colors.white,
-                              child: Text(
-                                'タンパク質',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87),
-                              ),
-                            ),
-                            Material(
-                              color: Colors.white,
-                              child: Text(
-                                '$proteinselectNumbar%',
-                                style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87),
-                              ),
-                            ),
-                          ],
+                        TextButton(
+                          child: const Text('閉じる'),
+                          onPressed: () => Navigator.of(context).pop(),
                         ),
-                        Column(
-                          children: [
-                            const Material(
-                              color: Colors.white,
-                              child: Text(
-                                '脂質',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87),
-                              ),
-                            ),
-                            Material(
-                              color: Colors.white,
-                              child: Text(
-                                '$fatSelectNumbar%',
-                                style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const Material(
-                              color: Colors.white,
-                              child: Text(
-                                '炭水化物',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87),
-                              ),
-                            ),
-                            Material(
-                              color: Colors.white,
-                              child: Text(
-                                '$carbosSelectNumbar%',
-                                style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87),
-                              ),
-                            ),
-                          ],
+                        TextButton(
+                          child: const Text('決定'),
+                          onPressed: () async {
+                            pfcGram = caloriesToGrams(
+                                currentUser.targetCalories,
+                                proteinselectNumbar,
+                                fatSelectNumbar,
+                                carbosSelectNumbar);
+                            Navigator.of(context).pop();
+                          },
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 180,
-                    child: Expanded(
+                    Container(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Expanded(
-                            child: CupertinoPicker(
-                              itemExtent: 35,
-                              scrollController:
-                                  FixedExtentScrollController(initialItem: 50),
-                              onSelectedItemChanged: (index) {
-                                proteinselectNumbar = numbars[index];
-                              },
-                              children: numbars
-                                  .map((numbar) => Text(numbar))
-                                  .toList(),
-                            ),
+                          Column(
+                            children: [
+                              const Material(
+                                color: Colors.white,
+                                child: Text(
+                                  'タンパク質',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87),
+                                ),
+                              ),
+                              Material(
+                                color: Colors.white,
+                                child: Text(
+                                  '$proteinselectNumbar%',
+                                  style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87),
+                                ),
+                              ),
+                            ],
                           ),
-                          Expanded(
-                            child: CupertinoPicker(
-                              itemExtent: 35,
-                              scrollController:
-                                  FixedExtentScrollController(initialItem: 50),
-                              onSelectedItemChanged: (index) {
-                                fatSelectNumbar = numbars[index];
-                              },
-                              children: numbars
-                                  .map((numbar) => Text(numbar))
-                                  .toList(),
-                            ),
+                          Column(
+                            children: [
+                              const Material(
+                                color: Colors.white,
+                                child: Text(
+                                  '脂質',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87),
+                                ),
+                              ),
+                              Material(
+                                color: Colors.white,
+                                child: Text(
+                                  '$fatSelectNumbar%',
+                                  style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87),
+                                ),
+                              ),
+                            ],
                           ),
-                          Expanded(
-                            child: CupertinoPicker(
-                              itemExtent: 35,
-                              scrollController:
-                                  FixedExtentScrollController(initialItem: 50),
-                              onSelectedItemChanged: (index) {
-                                carbosSelectNumbar = numbars[index];
-                              },
-                              children: numbars
-                                  .map((numbar) => Text(numbar))
-                                  .toList(),
-                            ),
+                          Column(
+                            children: [
+                              const Material(
+                                color: Colors.white,
+                                child: Text(
+                                  '炭水化物',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87),
+                                ),
+                              ),
+                              Material(
+                                color: Colors.white,
+                                child: Text(
+                                  '$carbosSelectNumbar%',
+                                  style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Material(
-                    color: Colors.white,
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          const TextSpan(
-                              text: "合計",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15)),
-                          TextSpan(
-                              //TODO:リアルタイム数字変換
-                              text: '$viewNumbar%',
-                              style: TextStyle(
-                                  color: Colors.orange[400],
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20)),
-                        ],
+                    SizedBox(
+                      height: 180,
+                      child: Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CupertinoPicker(
+                                itemExtent: 35,
+                                scrollController: FixedExtentScrollController(
+                                    initialItem: 50),
+                                onSelectedItemChanged: (index) {
+                                  proteinselectNumbar = numbars[index];
+                                  setState(() {});
+                                },
+                                children: numbars
+                                    .map((numbar) => Text(numbar))
+                                    .toList(),
+                              ),
+                            ),
+                            Expanded(
+                              child: CupertinoPicker(
+                                itemExtent: 35,
+                                scrollController: FixedExtentScrollController(
+                                    initialItem: 50),
+                                onSelectedItemChanged: (index) {
+                                  fatSelectNumbar = numbars[index];
+                                  setState(() {});
+                                },
+                                children: numbars
+                                    .map((numbar) => Text(numbar))
+                                    .toList(),
+                              ),
+                            ),
+                            Expanded(
+                              child: CupertinoPicker(
+                                itemExtent: 35,
+                                scrollController: FixedExtentScrollController(
+                                    initialItem: 50),
+                                onSelectedItemChanged: (index) {
+                                  carbosSelectNumbar = numbars[index];
+                                  setState(() {});
+                                },
+                                children: numbars
+                                    .map((numbar) => Text(numbar))
+                                    .toList(),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Material(
+                    Material(
                       color: Colors.white,
-                      child: Text(
-                        'PFC比率の割合は足して100％になるように設定してください',
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.bold),
-                      ))
-                ],
-              ),
-            );
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            const TextSpan(
+                                text: "合計",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15)),
+                            TextSpan(
+                                text: '$viewNumbar%',
+                                style: TextStyle(
+                                    color: Colors.orange[400],
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Material(
+                        color: Colors.white,
+                        child: Text(
+                          'PFC比率の割合は足して100％になるように設定してください',
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.bold),
+                        ))
+                  ],
+                ),
+              );
+            });
           });
     }
 
@@ -523,7 +533,7 @@ class TargetPreferenceScreen extends ConsumerWidget {
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color(COLOR_PRIMARY),
+                  primary: const Color(COLOR_PRIMARY),
                   padding: const EdgeInsets.only(top: 7, bottom: 7),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -570,6 +580,13 @@ class TargetPreferenceScreen extends ConsumerWidget {
                   MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
             child: const Text('値をfirestoreから持ってきてUserクラスに代入して次のページいく'),
+          ),
+          ElevatedButton(
+            child: const Text('Button'),
+            onPressed: () {
+              print(pfcGram);
+              setState(() {});
+            },
           ),
         ]),
       ),
