@@ -5,6 +5,8 @@ import 'package:food_app/ui/auth/AuthScreen.dart';
 
 import 'firebase_options.dart';
 
+//RouteObserverのやつ
+final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
 void main() async {
 //クラウドファイアストアのやつ
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Radial Gauge Demo',
+      //RouteObserverのやつ
+      navigatorObservers: [routeObserver],
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const AuthScreen(),
     );

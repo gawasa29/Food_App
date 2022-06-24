@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/const.dart';
 
+import '../../main.dart';
 import '../../model/User.dart';
 import '../../services/FirebaseHelper.dart';
 import '../home/HomeScreen.dart';
@@ -17,13 +18,28 @@ class TargetPreferenceScreen extends ConsumerStatefulWidget {
   TargetPreferenceScreenState createState() => TargetPreferenceScreenState();
 }
 
-class TargetPreferenceScreenState
-    extends ConsumerState<TargetPreferenceScreen> {
+class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
+    with RouteAware {
   FireStoreUtils fireStoreUtils = FireStoreUtils();
   String proteinselectNumbar = '30';
   String fatSelectNumbar = '10';
   String carbosSelectNumbar = '60';
   Map? pfcGram;
+
+  @override
+  //RouteObserverのやつ
+  void didChangeDependencies() {
+    // 遷移時に呼ばれる関数
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
+  }
+
+  @override
+  //RouteObserverのやつpop時に呼び出される関数
+  void didPopNext() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentUser = ref.watch(userModelProvider);
@@ -580,13 +596,6 @@ class TargetPreferenceScreenState
                   MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
             child: const Text('値をfirestoreから持ってきてUserクラスに代入して次のページいく'),
-          ),
-          ElevatedButton(
-            child: const Text('Button'),
-            onPressed: () {
-              print(pfcGram);
-              setState(() {});
-            },
           ),
         ]),
       ),
