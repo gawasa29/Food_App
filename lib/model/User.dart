@@ -7,6 +7,7 @@ final userModelProvider = StateProvider((ref) {
 });
 
 class User with ChangeNotifier {
+  String email;
   String weight;
   String targetWeight;
   String height;
@@ -18,6 +19,7 @@ class User with ChangeNotifier {
   String targetCarbo;
 
   User({
+    this.email = "",
     this.weight = "",
     this.targetWeight = "",
     this.height = "",
@@ -31,6 +33,7 @@ class User with ChangeNotifier {
   //Firebaseからデータを取得する際の変換処理
   User.fromJson(Map<String, dynamic> json)
       : this(
+          email: json['email'],
           weight: json['weight'],
           targetWeight: json['targetWeight'],
           height: json['height'],
@@ -44,6 +47,7 @@ class User with ChangeNotifier {
   //DartのオブジェクトからFirebaseへ渡す際の変換処理
   Map<String, dynamic> toJson() {
     return {
+      'email': email,
       'weight': weight,
       'targetWeight': targetWeight,
       "height": height,

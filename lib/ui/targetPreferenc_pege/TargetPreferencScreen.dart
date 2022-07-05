@@ -10,6 +10,7 @@ import '../../main.dart';
 import '../../model/User.dart';
 import '../../services/FirebaseHelper.dart';
 import '../home/HomeScreen.dart';
+import '../signup/SignUpScreen.dart';
 
 class TargetPreferenceScreen extends ConsumerStatefulWidget {
   const TargetPreferenceScreen({Key? key}) : super(key: key);
@@ -567,6 +568,7 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                 ),
                 onPressed: () async {
                   //TODOピッカーで選択した値をUserクラスに値を追加してfirestoreに追加
+                  currentUser.email = newUserEmail;
                   currentUser.targetProtein = proteinselectNumbar;
                   currentUser.targetFat = fatSelectNumbar;
                   currentUser.targetCarbo = carbosSelectNumbar;
