@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_app/Test2Screen.dart';
 import 'package:food_app/const.dart';
 import 'package:food_app/model/User.dart';
 
@@ -101,6 +102,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: const Text('test'),
             ),
 
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange,
+                onPrimary: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+              child: const Text('test'),
+            ),
             //↓分けられへんかったからこのまま
             Container(
               margin: const EdgeInsets.only(top: 10, left: 5, right: 5),
