@@ -12,6 +12,8 @@ import '../../services/FirebaseHelper.dart';
 import '../home/HomeScreen.dart';
 import '../signup/SignUpScreen.dart';
 
+Map? pfcGram;
+
 class TargetPreferenceScreen extends ConsumerStatefulWidget {
   const TargetPreferenceScreen({Key? key}) : super(key: key);
 
@@ -22,10 +24,9 @@ class TargetPreferenceScreen extends ConsumerStatefulWidget {
 class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
     with RouteAware {
   FireStoreUtils fireStoreUtils = FireStoreUtils();
-  String proteinselectNumbar = '30';
-  String fatSelectNumbar = '10';
-  String carbosSelectNumbar = '60';
-  Map? pfcGram;
+  String proteinselectNumbar = '0';
+  String fatSelectNumbar = '0';
+  String carbosSelectNumbar = '0';
 
   @override
   //RouteObserverのやつ
@@ -171,8 +172,8 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                             Expanded(
                               child: CupertinoPicker(
                                 itemExtent: 35,
-                                scrollController: FixedExtentScrollController(
-                                    initialItem: 50),
+                                scrollController:
+                                    FixedExtentScrollController(initialItem: 0),
                                 onSelectedItemChanged: (index) {
                                   proteinselectNumbar = numbars[index];
                                   setState(() {});
@@ -185,8 +186,8 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                             Expanded(
                               child: CupertinoPicker(
                                 itemExtent: 35,
-                                scrollController: FixedExtentScrollController(
-                                    initialItem: 50),
+                                scrollController:
+                                    FixedExtentScrollController(initialItem: 0),
                                 onSelectedItemChanged: (index) {
                                   fatSelectNumbar = numbars[index];
                                   setState(() {});
@@ -199,8 +200,8 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                             Expanded(
                               child: CupertinoPicker(
                                 itemExtent: 35,
-                                scrollController: FixedExtentScrollController(
-                                    initialItem: 50),
+                                scrollController:
+                                    FixedExtentScrollController(initialItem: 0),
                                 onSelectedItemChanged: (index) {
                                   carbosSelectNumbar = numbars[index];
                                   setState(() {});
@@ -274,94 +275,6 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                 left: 10,
               ),
               child: const Text(
-                '目標',
-              ),
-            ),
-          ),
-          Container(
-            color: Colors.white,
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  '現在体重',
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 75,
-                      child: TextFormField(
-                        textAlign: TextAlign.right,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "未設定",
-                        ),
-                        onChanged: (text) {
-                          currentUser.weight = text;
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    const Text(
-                      'kg',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  '目標体重',
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 75,
-                      child: TextFormField(
-                        textAlign: TextAlign.right,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "未設定",
-                        ),
-                        onChanged: (text) {
-                          currentUser.targetWeight = text;
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    const Text(
-                      'kg',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              margin: const EdgeInsets.only(
-                top: 10,
-                bottom: 10,
-                right: 5,
-                left: 10,
-              ),
-              child: const Text(
                 '栄養素の目標設定',
               ),
             ),
@@ -387,7 +300,7 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               border: InputBorder.none,
-                              hintText: "2500",
+                              hintText: "0",
                               hintStyle: TextStyle(color: Colors.blue),
                             ),
                             onChanged: (text) {
@@ -438,7 +351,7 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                                 style: const TextStyle(fontSize: 15),
                               )
                             : const Text(
-                                '81',
+                                '0',
                                 style: TextStyle(fontSize: 15),
                               ),
                         const SizedBox(
@@ -483,7 +396,7 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                                 style: const TextStyle(fontSize: 15),
                               )
                             : const Text(
-                                '81',
+                                '0',
                                 style: TextStyle(fontSize: 15),
                               ),
                         const SizedBox(
@@ -528,7 +441,7 @@ class TargetPreferenceScreenState extends ConsumerState<TargetPreferenceScreen>
                                 style: const TextStyle(fontSize: 15),
                               )
                             : const Text(
-                                '81',
+                                '0',
                                 style: TextStyle(fontSize: 15),
                               ),
                         const SizedBox(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/const.dart';
 import 'package:food_app/model/User.dart';
+import 'package:food_app/services/FirebaseHelper.dart';
+import 'package:food_app/ui/targetPreferenc_pege/TargetPreferencScreen.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../../model/GlafData.dart';
@@ -20,6 +22,7 @@ class glaf extends ConsumerStatefulWidget {
 }
 
 class _glafState extends ConsumerState<glaf> {
+  FireStoreUtils fireStoreUtils = FireStoreUtils();
   int touchedIndex = -1;
 
   bool isPlaying = false;
@@ -129,7 +132,7 @@ class _glafState extends ConsumerState<glaf> {
                     width: 175,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           'タンパク質',
                           style: TextStyle(fontSize: 12),
@@ -145,7 +148,7 @@ class _glafState extends ConsumerState<glaf> {
                                       fontSize: 15)),
                               TextSpan(
                                   //各人によって変わる数値////////////////////////////////////////////////
-                                  text: ' / 109',
+                                  text: ' / ${pfcGram!["proteinGram"]}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12)),
@@ -217,7 +220,7 @@ class _glafState extends ConsumerState<glaf> {
                     padding: const EdgeInsets.only(top: 10, bottom: 2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           '脂質',
                           style: TextStyle(fontSize: 12),
@@ -231,7 +234,7 @@ class _glafState extends ConsumerState<glaf> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15)),
                               TextSpan(
-                                  text: ' / 1000',
+                                  text: ' / ${pfcGram!["fatGram"]}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12)),
@@ -300,7 +303,7 @@ class _glafState extends ConsumerState<glaf> {
                     padding: const EdgeInsets.only(top: 10, bottom: 2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           '炭水化物',
                           style: TextStyle(fontSize: 12),
@@ -314,7 +317,7 @@ class _glafState extends ConsumerState<glaf> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15)),
                               TextSpan(
-                                  text: ' / 1000',
+                                  text: ' / ${pfcGram!["carboGram"]}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12)),
