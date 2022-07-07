@@ -89,17 +89,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             glaf(progressValue: progressValue),
 
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.orange,
-                onPrimary: Colors.white,
-              ),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const TestScreen()),
                 );
               },
-              child: const Text('test'),
+              child: const Text('gawasatest'),
             ),
 
             ElevatedButton(
@@ -113,7 +109,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   MaterialPageRoute(builder: (context) => LoginPage()),
                 );
               },
-              child: const Text('test'),
+              child: const Text('yomatest'),
             ),
             //↓分けられへんかったからこのまま
             Container(
@@ -169,7 +165,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       floatingActionButton: SpeedDial(
         icon: Icons.add,
-        backgroundColor: Color(COLOR_PRIMARY),
+        backgroundColor: const Color(COLOR_PRIMARY),
         children: [
           SpeedDialChild(
             child: const FaIcon(

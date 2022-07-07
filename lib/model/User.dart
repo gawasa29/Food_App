@@ -17,6 +17,10 @@ class User with ChangeNotifier {
   String targetProtein;
   String targetFat;
   String targetCarbo;
+  String currentCalories;
+  String currentProtein;
+  String currentFat;
+  String currentCarbo;
 
   User({
     this.email = "",
@@ -28,6 +32,10 @@ class User with ChangeNotifier {
     this.targetProtein = "",
     this.targetFat = "",
     this.targetCarbo = "",
+    this.currentCalories = "0",
+    this.currentProtein = "0",
+    this.currentFat = "0",
+    this.currentCarbo = "0",
   });
 
   //Firebaseからデータを取得する際の変換処理
@@ -42,6 +50,10 @@ class User with ChangeNotifier {
           targetProtein: json['targetProtein'],
           targetFat: json['targetFat'],
           targetCarbo: json['targetCarbo'],
+          currentCalories: json['currentCalories'],
+          currentProtein: json['currentProtein'],
+          currentFat: json['currentFat'],
+          currentCarbo: json['currentCarbo'],
         );
 
   //DartのオブジェクトからFirebaseへ渡す際の変換処理
@@ -56,6 +68,10 @@ class User with ChangeNotifier {
       'targetProtein': targetProtein,
       'targetFat': targetFat,
       "targetCarbo": targetCarbo,
+      "currentCalories": currentCalories,
+      'currentProtein': currentProtein,
+      'currentFat': currentFat,
+      "currentCarbo": currentCarbo,
     };
   }
 }

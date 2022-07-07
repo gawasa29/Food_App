@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/const.dart';
 
-import '../emailcheck/EmailCheckScreen.dart';
+import '../targetPreferenc_pege/TargetPreferencScreen.dart';
 
 // 入力されたメールアドレス
 String newUserEmail = "";
@@ -127,7 +127,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
             height: 40,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Color(COLOR_PRIMARY),
+                primary: const Color(COLOR_PRIMARY),
                 padding: const EdgeInsets.only(top: 7, bottom: 7),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -163,7 +163,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const EmailCheckScreen()),
+                        builder: (context) => const TargetPreferenceScreen()),
                   );
                 } catch (e) {
                   // 登録に失敗した場合

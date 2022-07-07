@@ -30,6 +30,10 @@ class TestScreen extends ConsumerWidget {
               Text(currentUser.targetCarbo),
               Text(currentUser.targetFat),
               Text(currentUser.targetProtein),
+              Text(currentUser.currentCalories),
+              Text(currentUser.currentCarbo),
+              Text(currentUser.currentFat),
+              Text(currentUser.currentProtein),
             ],
           ),
         ));
